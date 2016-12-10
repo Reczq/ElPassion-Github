@@ -13,6 +13,7 @@
 		B489275E1DFC64D900DB940F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B489275D1DFC64D900DB940F /* SearchViewController.swift */; };
 		B48927601DFC655900DB940F /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B489275F1DFC655900DB940F /* SearchView.swift */; };
 		B48927621DFC6FD200DB940F /* UISearchBar+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48927611DFC6FD200DB940F /* UISearchBar+Appearance.swift */; };
+		B48927641DFC71EE00DB940F /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48927631DFC71EE00DB940F /* APIManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		B489275D1DFC64D900DB940F /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		B489275F1DFC655900DB940F /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		B48927611DFC6FD200DB940F /* UISearchBar+Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Appearance.swift"; sourceTree = "<group>"; };
+		B48927631DFC71EE00DB940F /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 		B422ABF01DFC457400925E6A /* API */ = {
 			isa = PBXGroup;
 			children = (
+				B48927631DFC71EE00DB940F /* APIManager.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 			files = (
 				B489275E1DFC64D900DB940F /* SearchViewController.swift in Sources */,
 				B48927601DFC655900DB940F /* SearchView.swift in Sources */,
+				B48927641DFC71EE00DB940F /* APIManager.swift in Sources */,
 				B422ABDF1DFC441F00925E6A /* AppDelegate.swift in Sources */,
 				B48927621DFC6FD200DB940F /* UISearchBar+Appearance.swift in Sources */,
 			);
