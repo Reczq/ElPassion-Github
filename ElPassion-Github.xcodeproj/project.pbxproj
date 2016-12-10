@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27C09F22F6008485D7D1F800 /* Pods_ElPassion_Github.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58CBCAD07732548049A6E538 /* Pods_ElPassion_Github.framework */; };
 		B422ABDF1DFC441F00925E6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B422ABDE1DFC441F00925E6A /* AppDelegate.swift */; };
 		B422AC011DFC45F400925E6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B422AC001DFC45F400925E6A /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2818D1314CA980AEDF83572F /* Pods-ElPassion-Github.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ElPassion-Github.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ElPassion-Github/Pods-ElPassion-Github.debug.xcconfig"; sourceTree = "<group>"; };
+		58CBCAD07732548049A6E538 /* Pods_ElPassion_Github.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ElPassion_Github.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C9B35ABA464181DCA3B0439 /* Pods-ElPassion-Github.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ElPassion-Github.release.xcconfig"; path = "Pods/Target Support Files/Pods-ElPassion-Github/Pods-ElPassion-Github.release.xcconfig"; sourceTree = "<group>"; };
 		B422ABDB1DFC441F00925E6A /* ElPassion-Github.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ElPassion-Github.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B422ABDE1DFC441F00925E6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B422ABEA1DFC441F00925E6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
@@ -25,17 +29,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27C09F22F6008485D7D1F800 /* Pods_ElPassion_Github.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7995562BD3EC990B2EE86310 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				58CBCAD07732548049A6E538 /* Pods_ElPassion_Github.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		89FF61BB46D4A536C3A18B09 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2818D1314CA980AEDF83572F /* Pods-ElPassion-Github.debug.xcconfig */,
+				7C9B35ABA464181DCA3B0439 /* Pods-ElPassion-Github.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		B422ABD21DFC441F00925E6A = {
 			isa = PBXGroup;
 			children = (
 				B422ABDD1DFC441F00925E6A /* ElPassion-Github */,
 				B422ABDC1DFC441F00925E6A /* Products */,
+				89FF61BB46D4A536C3A18B09 /* Pods */,
+				7995562BD3EC990B2EE86310 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,9 +154,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B422ABED1DFC441F00925E6A /* Build configuration list for PBXNativeTarget "ElPassion-Github" */;
 			buildPhases = (
+				E16676CD00BD34152F809E53 /* [CP] Check Pods Manifest.lock */,
 				B422ABD71DFC441F00925E6A /* Sources */,
 				B422ABD81DFC441F00925E6A /* Frameworks */,
 				B422ABD91DFC441F00925E6A /* Resources */,
+				B15660564EB9D879C70214F7 /* [CP] Embed Pods Frameworks */,
+				951AC3BAF9DBED1F35A744C3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -188,6 +215,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		951AC3BAF9DBED1F35A744C3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ElPassion-Github/Pods-ElPassion-Github-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B15660564EB9D879C70214F7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ElPassion-Github/Pods-ElPassion-Github-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E16676CD00BD34152F809E53 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B422ABD71DFC441F00925E6A /* Sources */ = {
@@ -313,6 +388,7 @@
 		};
 		B422ABEE1DFC441F00925E6A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2818D1314CA980AEDF83572F /* Pods-ElPassion-Github.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 8BA4XK6Q7R;
@@ -328,6 +404,7 @@
 		};
 		B422ABEF1DFC441F00925E6A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C9B35ABA464181DCA3B0439 /* Pods-ElPassion-Github.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 8BA4XK6Q7R;
