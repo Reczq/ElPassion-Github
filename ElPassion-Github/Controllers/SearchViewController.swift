@@ -15,12 +15,15 @@ class SearchViewController: UIViewController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         searchBar = UISearchBar()
         searchBar.searchBarStyle = .minimal
+        let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
+        textFieldInsideSearchBar?.keyboardAppearance = .dark
+        textFieldInsideSearchBar?.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 
         navigationItem.titleView = searchBar
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
