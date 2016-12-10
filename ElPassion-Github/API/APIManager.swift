@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class APIManager {
 
@@ -34,7 +35,22 @@ protocol APIManagerProtocol {
     var parser: APIResultParser { get }
 
     init(with baseURL: String, parser: APIResultParser)
-    func search(with queryString: String, completion: ([APIResultModel]) -> ())
+    func search(with queryString: String, completion: @escaping ([APIResultModel]) -> ())
+}
+
+extension APIManagerProtocol {
+    func search(with queryString: String, completion: @escaping ([APIResultModel]) -> ()) {
+        let fullPath = baseURL + path
+        let params = ["q" : queryString]
+
+        Alamofire.request(fullPath, parameters: params).responseData { response in
+            if let responseData =  response.result.value {
+                let jsonData = JSON(data: responseData)
+                let result = self.parser.parse(data: jsonData)
+                completion(result)
+            }
+        }
+    }
 }
 
 ////////////////////////////
@@ -48,24 +64,48 @@ struct UserModel: APIResultModel {
     var iden: String
 }
 
-struct ModelRespository: APIResultModel {
+struct RespositoryModel: APIResultModel {
     var name: String
     var iden: String
 }
 ////////////////////////////
 protocol APIResultParser {
-    func parse(data: DataRequest) -> [APIResultModel]
+    func parse(data: JSON) -> [APIResultModel]
 }
 
 struct APIUserParser: APIResultParser {
-    func parse(data: DataRequest) -> [APIResultModel] {
-        return []
+
+    func parse(data: JSON) -> [APIResultModel] {
+        var models = [UserModel]()
+
+        guard let items = data["items"].array else { return models }
+
+        for item in items {
+            let userId = item["id"].stringValue
+            let userName = item["login"].stringValue
+            let model = UserModel(name: userName, iden: userId)
+            models.append(model)
+        }
+
+        return models
     }
 }
 
 struct APIRepositoryParser: APIResultParser {
-    func parse(data: DataRequest) -> [APIResultModel] {
-        return []
+
+    func parse(data: JSON) -> [APIResultModel] {
+        var models = [RespositoryModel]()
+
+        guard let items = data["items"].array else { return models }
+
+        for item in items {
+            let userId = item["id"].stringValue
+            let userName = item["name"].stringValue
+            let model = RespositoryModel(name: userName, iden: userId)
+            models.append(model)
+        }
+
+        return models
     }
 }
 ////////////////////////////
@@ -80,12 +120,6 @@ class APIUserManager: APIManagerProtocol {
         self.parser = parser
         self.path = "/search/users"
     }
-
-    func search(with queryString: String, completion: ([APIResultModel]) -> ()) {
-//        Alamofire.request("https://httpbin.org/get", parameters: [:]).responseJSON { response in
-//
-//        }
-    }
 }
 
 class APIRepositoryManager: APIManagerProtocol {
@@ -97,10 +131,6 @@ class APIRepositoryManager: APIManagerProtocol {
     required init(with baseURL: String, parser: APIResultParser) {
         self.baseURL = baseURL
         self.parser = parser
-        self.path = "/search/repos"
-    }
-
-    func search(with queryString: String, completion: ([APIResultModel]) -> ()) {
-
+        self.path = "/search/repositories"
     }
 }

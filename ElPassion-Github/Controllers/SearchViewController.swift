@@ -39,6 +39,20 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
 
         navigationBarSetup()
+
+        testo()
+    }
+
+    func testo() {
+        let userManager = APIManager().createUserManager()
+        userManager.search(with: "mojombo") { (models) in
+            print(models)
+        }
+
+        let repoManager = APIManager().createRepositoryManager()
+        repoManager.search(with: "swift") { (models) in
+            print(models)
+        }
     }
 
     func navigationBarSetup() {
