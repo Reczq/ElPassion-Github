@@ -14,6 +14,7 @@
 		B48927601DFC655900DB940F /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B489275F1DFC655900DB940F /* SearchView.swift */; };
 		B48927621DFC6FD200DB940F /* UISearchBar+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48927611DFC6FD200DB940F /* UISearchBar+Appearance.swift */; };
 		B48927641DFC71EE00DB940F /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48927631DFC71EE00DB940F /* APIManager.swift */; };
+		B4E24B321DFDAF5F00A46E99 /* SearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E24B311DFDAF5F00A46E99 /* SearchDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		B489275F1DFC655900DB940F /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		B48927611DFC6FD200DB940F /* UISearchBar+Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Appearance.swift"; sourceTree = "<group>"; };
 		B48927631DFC71EE00DB940F /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		B4E24B311DFDAF5F00A46E99 /* SearchDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				B489275D1DFC64D900DB940F /* SearchViewController.swift */,
+				B4E24B311DFDAF5F00A46E99 /* SearchDataSource.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4E24B321DFDAF5F00A46E99 /* SearchDataSource.swift in Sources */,
 				B489275E1DFC64D900DB940F /* SearchViewController.swift in Sources */,
 				B48927601DFC655900DB940F /* SearchView.swift in Sources */,
 				B48927641DFC71EE00DB940F /* APIManager.swift in Sources */,

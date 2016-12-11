@@ -28,18 +28,18 @@ class APIManager {
         return APIRepositoryManager(with: baseURL, parser: parser)
     }
 }
-
+//////////////////////////////
 protocol APIManagerProtocol {
     var baseURL: String { get }
     var path: String { get }
-    var parser: APIResultParser { get }
+    var parser: APIResultParserProtocol { get }
 
-    init(with baseURL: String, parser: APIResultParser)
-    func search(with queryString: String, completion: @escaping ([APIResultModel]) -> ())
+    init(with baseURL: String, parser: APIResultParserProtocol)
+    func search(with queryString: String, completion: @escaping ([APIResultModelProtocol]) -> ())
 }
 
 extension APIManagerProtocol {
-    func search(with queryString: String, completion: @escaping ([APIResultModel]) -> ()) {
+    func search(with queryString: String, completion: @escaping ([APIResultModelProtocol]) -> ()) {
         let fullPath = baseURL + path
         let params = ["q" : queryString]
 
@@ -54,28 +54,32 @@ extension APIManagerProtocol {
 }
 
 ////////////////////////////
-protocol APIResultModel {
+// Models
+protocol APIResultModelProtocol {
     var name: String { get }
     var iden: String { get }
 }
-
-struct UserModel: APIResultModel {
-    var name: String
-    var iden: String
-}
-
-struct RespositoryModel: APIResultModel {
+////////////////////////////
+// Models
+struct UserModel: APIResultModelProtocol {
     var name: String
     var iden: String
 }
 ////////////////////////////
-protocol APIResultParser {
-    func parse(data: JSON) -> [APIResultModel]
+// Models
+struct RespositoryModel: APIResultModelProtocol {
+    var name: String
+    var iden: String
 }
+////////////////////////////
+protocol APIResultParserProtocol {
+    func parse(data: JSON) -> [APIResultModelProtocol]
+}
+////////////////////////////
 
-struct APIUserParser: APIResultParser {
+struct APIUserParser: APIResultParserProtocol {
 
-    func parse(data: JSON) -> [APIResultModel] {
+    func parse(data: JSON) -> [APIResultModelProtocol] {
         var models = [UserModel]()
 
         guard let items = data["items"].array else { return models }
@@ -90,10 +94,11 @@ struct APIUserParser: APIResultParser {
         return models
     }
 }
+////////////////////////////
 
-struct APIRepositoryParser: APIResultParser {
+struct APIRepositoryParser: APIResultParserProtocol {
 
-    func parse(data: JSON) -> [APIResultModel] {
+    func parse(data: JSON) -> [APIResultModelProtocol] {
         var models = [RespositoryModel]()
 
         guard let items = data["items"].array else { return models }
@@ -113,22 +118,23 @@ class APIUserManager: APIManagerProtocol {
 
     let baseURL: String
     let path: String
-    let parser: APIResultParser
+    let parser: APIResultParserProtocol
 
-    required init(with baseURL: String, parser: APIResultParser) {
+    required init(with baseURL: String, parser: APIResultParserProtocol) {
         self.baseURL = baseURL
         self.parser = parser
         self.path = "/search/users"
     }
 }
+////////////////////////////
 
 class APIRepositoryManager: APIManagerProtocol {
 
     let baseURL: String
     let path: String
-    let parser: APIResultParser
+    let parser: APIResultParserProtocol
 
-    required init(with baseURL: String, parser: APIResultParser) {
+    required init(with baseURL: String, parser: APIResultParserProtocol) {
         self.baseURL = baseURL
         self.parser = parser
         self.path = "/search/repositories"

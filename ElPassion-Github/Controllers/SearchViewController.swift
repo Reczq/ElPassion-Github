@@ -11,12 +11,17 @@ import UIKit
 class SearchViewController: UIViewController {
 
     let searchBar: UISearchBar
+    let resultDataSource: SearchDataSource
+    let resultDelegate: SearchDelegate
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         searchBar = UISearchBar()
         searchBar.searchBarStyle = .minimal
         searchBar.getTextField()?.keyboardAppearance = .dark
         searchBar.textColor(color: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0))
+
+        resultDataSource = SearchDataSource()
+        resultDelegate = SearchDelegate()
 
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 
@@ -39,24 +44,50 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
 
         navigationBarSetup()
+        tableViewSetup()
 
-        testo()
+        search(with: "Dev")   
     }
 
-    func testo() {
-        let userManager = APIManager().createUserManager()
-        userManager.search(with: "mojombo") { (models) in
-            print(models)
-        }
-
-        let repoManager = APIManager().createRepositoryManager()
-        repoManager.search(with: "swift") { (models) in
-            print(models)
-        }
+    func tableViewSetup() {
+        castedView().resultTableView.dataSource = resultDataSource
+        castedView().resultTableView.delegate = resultDelegate
     }
 
     func navigationBarSetup() {
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.1879811585, green: 0.1879865527, blue: 0.1879836619, alpha: 1)
+    }
+}
+
+// API
+extension SearchViewController {
+
+    func search(with q: String) {
+        searchUser(with: q) { [weak self] (users) in
+            guard let strongSelf = self else { return }
+
+            strongSelf.searchRepo(with: q) { [weak self] (repos) in
+                guard let strongSelf = self else { return }
+
+                let items = SearchItems(repositories: repos, users: users)
+                strongSelf.resultDataSource.updateItems(items: items)
+                strongSelf.resultDelegate.updateItems(items: items)
+            }
+        }
+    }
+
+    func searchUser(with q: String, completion: @escaping ([APIResultModelProtocol]) -> ()) {
+        let userManager = APIManager().createUserManager()
+        userManager.search(with: q) { (models) in
+            completion(models)
+        }
+    }
+
+    func searchRepo(with q: String, completion: @escaping ([APIResultModelProtocol]) -> ()) {
+        let repoManager = APIManager().createRepositoryManager()
+        repoManager.search(with: q) { (models) in
+            completion(models)
+        }
     }
 }
