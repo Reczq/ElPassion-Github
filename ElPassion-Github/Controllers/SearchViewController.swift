@@ -84,7 +84,7 @@ extension SearchViewController {
         let userManager = APIManager().createUserManager()
         userManager.search(with: q) { (models) in
 
-            let sortedModel = models.sorted(by: { $0.iden > $1.iden })
+            let sortedModel = models.sorted(by: { Int($0.iden)! < Int($1.iden)! })
 
             completion(sortedModel)
         }
@@ -94,7 +94,7 @@ extension SearchViewController {
         let repoManager = APIManager().createRepositoryManager()
         repoManager.search(with: q) { (models) in
 
-            let sortedModel = models.sorted(by: { $0.iden > $1.iden })
+            let sortedModel = models.sorted(by: { Int($0.iden)! < Int($1.iden)! })
 
             completion(sortedModel)
         }
