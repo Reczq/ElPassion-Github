@@ -22,6 +22,11 @@ struct SearchItems {
     var users = [APIResultModelProtocol]()
 }
 
+struct SearchIdentifiers {
+    static let userCell = "UserCell"
+    static let repoCell = "RepoCell"
+}
+
 class SearchDataSource: NSObject, UITableViewDataSource {
 
     var items: SearchItems
@@ -62,23 +67,24 @@ class SearchDataSource: NSObject, UITableViewDataSource {
             return UITableViewCell()
         }
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: "defualtCell", for: indexPath)
-
-        var cellText = ""
         switch section {
         case .users:
+            let cell = tableView.dequeueReusableCell(withIdentifier: SearchIdentifiers.userCell, for: indexPath) as! UserCell
+
             if let user = items.users[indexPath.row] as? UserModel {
-                cellText = user.name
+                cell.textLabel?.text = user.name
             }
+
+            return cell
         case .repositories:
+            let cell = tableView.dequeueReusableCell(withIdentifier: SearchIdentifiers.repoCell, for: indexPath) as! RepoCell
+
             if let repo = items.repositories[indexPath.row] as? RespositoryModel {
-                cellText = repo.name
+                cell.textLabel?.text = repo.name
             }
+
+            return cell
         }
-
-        cell.textLabel?.text = cellText
-
-        return cell
     }
 }
 //////////

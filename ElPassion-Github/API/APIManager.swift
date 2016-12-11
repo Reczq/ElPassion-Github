@@ -65,6 +65,7 @@ protocol APIResultModelProtocol {
 struct UserModel: APIResultModelProtocol {
     var name: String
     var iden: String
+    var stars: String
 }
 ////////////////////////////
 // Models
@@ -77,7 +78,6 @@ protocol APIResultParserProtocol {
     func parse(data: JSON) -> [APIResultModelProtocol]
 }
 ////////////////////////////
-
 struct APIUserParser: APIResultParserProtocol {
 
     func parse(data: JSON) -> [APIResultModelProtocol] {
@@ -88,7 +88,8 @@ struct APIUserParser: APIResultParserProtocol {
         for item in items {
             let userId = item["id"].stringValue
             let userName = item["login"].stringValue
-            let model = UserModel(name: userName, iden: userId)
+            let stars = item["score"].stringValue
+            let model = UserModel(name: userName, iden: userId, stars: stars)
             models.append(model)
         }
 

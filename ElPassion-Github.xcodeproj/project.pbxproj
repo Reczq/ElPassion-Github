@@ -19,6 +19,8 @@
 		B4E24B3C1DFDC46500A46E99 /* UserDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E24B3B1DFDC46500A46E99 /* UserDetailsView.swift */; };
 		B4E24B3E1DFDC47A00A46E99 /* RepositoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E24B3D1DFDC47A00A46E99 /* RepositoryDetailsViewController.swift */; };
 		B4E24B401DFDC48F00A46E99 /* RepositoryDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E24B3F1DFDC48F00A46E99 /* RepositoryDetailsView.swift */; };
+		B4E24B451DFDCC0100A46E99 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E24B441DFDCC0100A46E99 /* UserCell.swift */; };
+		B4E24B471DFDCD4A00A46E99 /* RepoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E24B461DFDCD4A00A46E99 /* RepoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		B4E24B3B1DFDC46500A46E99 /* UserDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailsView.swift; sourceTree = "<group>"; };
 		B4E24B3D1DFDC47A00A46E99 /* RepositoryDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryDetailsViewController.swift; sourceTree = "<group>"; };
 		B4E24B3F1DFDC48F00A46E99 /* RepositoryDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryDetailsView.swift; sourceTree = "<group>"; };
+		B4E24B441DFDCC0100A46E99 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		B4E24B461DFDCD4A00A46E99 /* RepoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +172,7 @@
 		B422ABFC1DFC457400925E6A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B4E24B411DFDCBDC00A46E99 /* Cells */,
 				B4E24B391DFDC45600A46E99 /* Repos */,
 				B4E24B3A1DFDC45600A46E99 /* User */,
 				B489275F1DFC655900DB940F /* SearchView.swift */,
@@ -203,6 +208,31 @@
 			isa = PBXGroup;
 			children = (
 				B4E24B3B1DFDC46500A46E99 /* UserDetailsView.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		B4E24B411DFDCBDC00A46E99 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B4E24B421DFDCBDC00A46E99 /* Repositories */,
+				B4E24B431DFDCBDC00A46E99 /* User */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		B4E24B421DFDCBDC00A46E99 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				B4E24B461DFDCD4A00A46E99 /* RepoCell.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		B4E24B431DFDCBDC00A46E99 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				B4E24B441DFDCC0100A46E99 /* UserCell.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -338,7 +368,9 @@
 				B48927641DFC71EE00DB940F /* APIManager.swift in Sources */,
 				B4E24B381DFDC43800A46E99 /* UserDetailsViewController.swift in Sources */,
 				B422ABDF1DFC441F00925E6A /* AppDelegate.swift in Sources */,
+				B4E24B451DFDCC0100A46E99 /* UserCell.swift in Sources */,
 				B48927621DFC6FD200DB940F /* UISearchBar+Appearance.swift in Sources */,
+				B4E24B471DFDCD4A00A46E99 /* RepoCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

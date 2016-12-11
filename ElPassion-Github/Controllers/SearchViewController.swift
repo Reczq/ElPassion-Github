@@ -61,7 +61,9 @@ class SearchViewController: UIViewController {
     }
 
     func tableViewSetup() {
-        castedView().resultTableView.register(UITableViewCell.self, forCellReuseIdentifier: "defualtCell")
+        castedView().resultTableView.register(UserCell.self, forCellReuseIdentifier: SearchIdentifiers.userCell)
+        castedView().resultTableView.register(RepoCell.self, forCellReuseIdentifier: SearchIdentifiers.repoCell)
+
         castedView().resultTableView.dataSource = resultDataSource
         castedView().resultTableView.delegate = resultDelegate
 

@@ -30,3 +30,5 @@ class UserDetailsViewController: UIViewController {
         return self.view as! UserDetailsView
     }
 }
+
+
