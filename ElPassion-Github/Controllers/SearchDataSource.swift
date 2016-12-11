@@ -85,6 +85,8 @@ class SearchDataSource: NSObject, UITableViewDataSource {
 class SearchDelegate: NSObject, UITableViewDelegate {
 
     var items: SearchItems
+    var didSelectUser: ((UserModel) -> ())?
+    var didSelectRepo: ((RespositoryModel) -> ())?
 
     convenience override init() {
         self.init(with: SearchItems())
@@ -102,6 +104,19 @@ class SearchDelegate: NSObject, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
+        guard let section = SearchSections(rawValue: indexPath.section) else { return }
 
+        switch section {
+        case .users:
+            if let user = items.users[indexPath.row] as? UserModel,
+                let didSelectUser = didSelectUser {
+                didSelectUser(user)
+            }
+        case .repositories:
+            if let repo = items.repositories[indexPath.row] as? RespositoryModel,
+                let didSelectRepo = didSelectRepo {
+                didSelectRepo(repo)
+            }
+        }
     }
 }

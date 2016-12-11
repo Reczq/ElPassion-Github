@@ -13,6 +13,8 @@ class SearchViewController: UIViewController {
     let searchBar: UISearchBar
     let resultDataSource: SearchDataSource
     let resultDelegate: SearchDelegate
+    let userManager: APIManagerProtocol
+    let repoManager: APIManagerProtocol
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         searchBar = UISearchBar()
@@ -23,8 +25,13 @@ class SearchViewController: UIViewController {
         resultDataSource = SearchDataSource()
         resultDelegate = SearchDelegate()
 
+        let apiManager = APIManager()
+        userManager = apiManager.createUserManager()
+        repoManager = apiManager.createRepositoryManager()
+
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 
+        searchBar.delegate = self
         navigationItem.titleView = searchBar
     }
 
@@ -45,19 +52,46 @@ class SearchViewController: UIViewController {
 
         navigationBarSetup()
         tableViewSetup()
+    }
 
-        search(with: "Dev")
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        searchBar.endEditing(true)
     }
 
     func tableViewSetup() {
         castedView().resultTableView.register(UITableViewCell.self, forCellReuseIdentifier: "defualtCell")
         castedView().resultTableView.dataSource = resultDataSource
         castedView().resultTableView.delegate = resultDelegate
+
+        resultDelegate.didSelectUser = { [weak self] user in
+            guard let strongSelf = self else { return }
+
+            let userViewController = UserDetailsViewController(with: user)
+            strongSelf.navigationController?.pushViewController(userViewController, animated: true)
+        }
+
+        resultDelegate.didSelectRepo = { [weak self] repo in
+            guard let strongSelf = self else { return }
+
+            let repositoryViewController = RepositoryDetailsViewController(with: repo)
+            strongSelf.navigationController?.pushViewController(repositoryViewController, animated: true)
+        }
     }
 
     func navigationBarSetup() {
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.1879811585, green: 0.1879865527, blue: 0.1879836619, alpha: 1)
+    }
+}
+
+// SearchBar Delegate
+extension SearchViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+
+        print(searchText)
+        search(with: searchText)
     }
 }
 
@@ -72,7 +106,9 @@ extension SearchViewController {
                 guard let strongSelf = self else { return }
 
                 let items = SearchItems(repositories: repos, users: users)
+
                 print(items)
+
                 strongSelf.resultDataSource.updateItems(items: items)
                 strongSelf.resultDelegate.updateItems(items: items)
                 strongSelf.castedView().resultTableView.reloadData()
@@ -81,9 +117,8 @@ extension SearchViewController {
     }
 
     func searchUser(with q: String, completion: @escaping ([APIResultModelProtocol]) -> ()) {
-        let userManager = APIManager().createUserManager()
-        userManager.search(with: q) { (models) in
 
+        userManager.search(with: q) { (models) in
             let sortedModel = models.sorted(by: { Int($0.iden)! < Int($1.iden)! })
 
             completion(sortedModel)
@@ -91,9 +126,8 @@ extension SearchViewController {
     }
 
     func searchRepo(with q: String, completion: @escaping ([APIResultModelProtocol]) -> ()) {
-        let repoManager = APIManager().createRepositoryManager()
-        repoManager.search(with: q) { (models) in
 
+        repoManager.search(with: q) { (models) in
             let sortedModel = models.sorted(by: { Int($0.iden)! < Int($1.iden)! })
 
             completion(sortedModel)
