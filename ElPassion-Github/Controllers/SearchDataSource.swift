@@ -57,7 +57,28 @@ class SearchDataSource: NSObject, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+
+        guard let section = SearchSections(rawValue: indexPath.section) else {
+            return UITableViewCell()
+        }
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: "defualtCell", for: indexPath)
+
+        var cellText = ""
+        switch section {
+        case .users:
+            if let user = items.users[indexPath.row] as? UserModel {
+                cellText = user.name
+            }
+        case .repositories:
+            if let repo = items.repositories[indexPath.row] as? RespositoryModel {
+                cellText = repo.name
+            }
+        }
+
+        cell.textLabel?.text = cellText
+
+        return cell
     }
 }
 //////////

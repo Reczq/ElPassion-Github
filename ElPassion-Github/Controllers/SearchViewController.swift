@@ -46,10 +46,11 @@ class SearchViewController: UIViewController {
         navigationBarSetup()
         tableViewSetup()
 
-        search(with: "Dev")   
+        search(with: "Dev")
     }
 
     func tableViewSetup() {
+        castedView().resultTableView.register(UITableViewCell.self, forCellReuseIdentifier: "defualtCell")
         castedView().resultTableView.dataSource = resultDataSource
         castedView().resultTableView.delegate = resultDelegate
     }
@@ -71,8 +72,10 @@ extension SearchViewController {
                 guard let strongSelf = self else { return }
 
                 let items = SearchItems(repositories: repos, users: users)
+                print(items)
                 strongSelf.resultDataSource.updateItems(items: items)
                 strongSelf.resultDelegate.updateItems(items: items)
+                strongSelf.castedView().resultTableView.reloadData()
             }
         }
     }
@@ -80,14 +83,20 @@ extension SearchViewController {
     func searchUser(with q: String, completion: @escaping ([APIResultModelProtocol]) -> ()) {
         let userManager = APIManager().createUserManager()
         userManager.search(with: q) { (models) in
-            completion(models)
+
+            let sortedModel = models.sorted(by: { $0.iden > $1.iden })
+
+            completion(sortedModel)
         }
     }
 
     func searchRepo(with q: String, completion: @escaping ([APIResultModelProtocol]) -> ()) {
         let repoManager = APIManager().createRepositoryManager()
         repoManager.search(with: q) { (models) in
-            completion(models)
+
+            let sortedModel = models.sorted(by: { $0.iden > $1.iden })
+
+            completion(sortedModel)
         }
     }
 }
