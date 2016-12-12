@@ -3,6 +3,7 @@ import UIKit
 
 extension UISearchBar {
 
+    // Stackoverflow
     func getTextField() -> UITextField? {
         return value(forKey: "searchField") as? UITextField
     }

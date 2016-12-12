@@ -39,6 +39,7 @@ protocol APIManagerProtocol {
 }
 
 extension APIManagerProtocol {
+
     func search(with queryString: String, completion: @escaping ([APIResultModelProtocol]) -> ()) {
         let fullPath = baseURL + path
         let params = ["q" : queryString]

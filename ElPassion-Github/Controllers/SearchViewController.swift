@@ -92,7 +92,6 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 
-        print(searchText)
         search(with: searchText)
     }
 }
@@ -108,12 +107,10 @@ extension SearchViewController {
                 guard let strongSelf = self else { return }
 
                 let items = SearchItems(repositories: repos, users: users)
-
-                print(items)
-
                 strongSelf.resultDataSource.updateItems(items: items)
                 strongSelf.resultDelegate.updateItems(items: items)
-                strongSelf.castedView().resultTableView.reloadData()
+                strongSelf.castedView().resultTableView.reloadSections([0, 1], with: .left)
+
             }
         }
     }
