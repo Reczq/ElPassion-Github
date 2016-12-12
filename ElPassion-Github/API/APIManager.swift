@@ -55,6 +55,13 @@ extension APIManagerProtocol {
     }
 }
 
+/*
+ TODO:
+ Add more items to User and Repository Models
+ Custom cells
+ Details view
+ */
+
 ////////////////////////////
 // Models
 protocol APIResultModelProtocol {
