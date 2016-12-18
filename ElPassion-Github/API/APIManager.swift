@@ -55,13 +55,6 @@ extension APIManagerProtocol {
     }
 }
 
-/*
- TODO:
- Add more items to User and Repository Models
- Custom cells
- Details view
- */
-
 ////////////////////////////
 // Models
 protocol APIResultModelProtocol {
@@ -74,12 +67,19 @@ struct UserModel: APIResultModelProtocol {
     var name: String
     var iden: String
     var stars: String
+    var avatarURL: String
 }
 ////////////////////////////
 // Models
 struct RespositoryModel: APIResultModelProtocol {
     var name: String
     var iden: String
+    var stars: String
+    var language: String
+    var description: String
+    var watchersCounter: String
+    var forksCounter: String
+    var ownerAvatarURL: String
 }
 ////////////////////////////
 protocol APIResultParserProtocol {
@@ -96,8 +96,12 @@ struct APIUserParser: APIResultParserProtocol {
         for item in items {
             let userId = item["id"].stringValue
             let userName = item["login"].stringValue
-            let stars = item["score"].stringValue
-            let model = UserModel(name: userName, iden: userId, stars: stars)
+            let userStars = item["score"].stringValue
+            let userAvatarURL = item["avatar_url"].stringValue
+            let model = UserModel(name: userName,
+                                  iden: userId,
+                                  stars: userStars,
+                                  avatarURL: userAvatarURL)
             models.append(model)
         }
 
@@ -114,9 +118,22 @@ struct APIRepositoryParser: APIResultParserProtocol {
         guard let items = data["items"].array else { return models }
 
         for item in items {
-            let userId = item["id"].stringValue
-            let userName = item["name"].stringValue
-            let model = RespositoryModel(name: userName, iden: userId)
+            let repositoryId = item["id"].stringValue
+            let repositoryName = item["name"].stringValue
+            let repositoryStars = item["score"].stringValue
+            let repositoryLanguage = item["language"].stringValue
+            let repositoryDescription = item["description"].stringValue
+            let repositoryWatchersCounter = item["watchers_count"].stringValue
+            let repositoryForksCounter = item["forks_count"].stringValue
+            let repositoryOwnerAvatarURL = item["owner"]["avatar_url"].stringValue
+            let model = RespositoryModel(name: repositoryName,
+                                         iden: repositoryId,
+                                         stars: repositoryStars,
+                                         language: repositoryLanguage,
+                                         description: repositoryDescription,
+                                         watchersCounter: repositoryWatchersCounter,
+                                         forksCounter: repositoryForksCounter,
+                                         ownerAvatarURL: repositoryOwnerAvatarURL)
             models.append(model)
         }
 

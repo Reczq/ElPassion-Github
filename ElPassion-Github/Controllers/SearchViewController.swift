@@ -109,7 +109,7 @@ extension SearchViewController {
                 let items = SearchItems(repositories: repos, users: users)
                 strongSelf.resultDataSource.updateItems(items: items)
                 strongSelf.resultDelegate.updateItems(items: items)
-                strongSelf.castedView().resultTableView.reloadSections([0, 1], with: .left)
+                strongSelf.castedView().resultTableView.reloadSections([0, 1], with: .fade)
 
             }
         }

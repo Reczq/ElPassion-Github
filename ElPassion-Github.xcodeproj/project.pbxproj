@@ -10,6 +10,9 @@
 		27C09F22F6008485D7D1F800 /* Pods_ElPassion_Github.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58CBCAD07732548049A6E538 /* Pods_ElPassion_Github.framework */; };
 		B422ABDF1DFC441F00925E6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B422ABDE1DFC441F00925E6A /* AppDelegate.swift */; };
 		B422AC011DFC45F400925E6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B422AC001DFC45F400925E6A /* Assets.xcassets */; };
+		B43B1E761E01DE2E0044E6A7 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B43B1E751E01DE2E0044E6A7 /* Launch Screen.storyboard */; };
+		B43B1E781E0219160044E6A7 /* UIImageView+Circular.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43B1E771E0219160044E6A7 /* UIImageView+Circular.swift */; };
+		B43B1E7C1E021B290044E6A7 /* UIImageView+loadImageFromURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43B1E7B1E021B290044E6A7 /* UIImageView+loadImageFromURL.swift */; };
 		B489275E1DFC64D900DB940F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B489275D1DFC64D900DB940F /* SearchViewController.swift */; };
 		B48927601DFC655900DB940F /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B489275F1DFC655900DB940F /* SearchView.swift */; };
 		B48927621DFC6FD200DB940F /* UISearchBar+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48927611DFC6FD200DB940F /* UISearchBar+Appearance.swift */; };
@@ -33,6 +36,9 @@
 		B422ABF51DFC457400925E6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B422ABF71DFC457400925E6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 		B422AC001DFC45F400925E6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B43B1E751E01DE2E0044E6A7 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "../Views/Launch Screen.storyboard"; sourceTree = "<group>"; };
+		B43B1E771E0219160044E6A7 /* UIImageView+Circular.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Circular.swift"; sourceTree = "<group>"; };
+		B43B1E7B1E021B290044E6A7 /* UIImageView+loadImageFromURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+loadImageFromURL.swift"; sourceTree = "<group>"; };
 		B489275D1DFC64D900DB940F /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		B489275F1DFC655900DB940F /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		B48927611DFC6FD200DB940F /* UISearchBar+Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Appearance.swift"; sourceTree = "<group>"; };
@@ -136,10 +142,10 @@
 		B422ABF81DFC457400925E6A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B4E24B351DFDC42E00A46E99 /* Repos */,
-				B4E24B361DFDC42E00A46E99 /* User */,
 				B489275D1DFC64D900DB940F /* SearchViewController.swift */,
 				B4E24B311DFDAF5F00A46E99 /* SearchDataSource.swift */,
+				B4E24B351DFDC42E00A46E99 /* Repos */,
+				B4E24B361DFDC42E00A46E99 /* User */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -148,6 +154,8 @@
 			isa = PBXGroup;
 			children = (
 				B48927611DFC6FD200DB940F /* UISearchBar+Appearance.swift */,
+				B43B1E771E0219160044E6A7 /* UIImageView+Circular.swift */,
+				B43B1E7B1E021B290044E6A7 /* UIImageView+loadImageFromURL.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -163,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				B422ABF31DFC457400925E6A /* Base.lproj */,
+				B43B1E751E01DE2E0044E6A7 /* Launch Screen.storyboard */,
 				B422ABEA1DFC441F00925E6A /* Info.plist */,
 				B422AC001DFC45F400925E6A /* Assets.xcassets */,
 			);
@@ -172,10 +181,10 @@
 		B422ABFC1DFC457400925E6A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B4E24B411DFDCBDC00A46E99 /* Cells */,
-				B4E24B391DFDC45600A46E99 /* Repos */,
-				B4E24B3A1DFDC45600A46E99 /* User */,
 				B489275F1DFC655900DB940F /* SearchView.swift */,
+				B4E24B411DFDCBDC00A46E99 /* Cells */,
+				B4E24B391DFDC45600A46E99 /* Repositories */,
+				B4E24B3A1DFDC45600A46E99 /* User */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,11 +205,12 @@
 			path = User;
 			sourceTree = "<group>";
 		};
-		B4E24B391DFDC45600A46E99 /* Repos */ = {
+		B4E24B391DFDC45600A46E99 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
 				B4E24B3F1DFDC48F00A46E99 /* RepositoryDetailsView.swift */,
 			);
+			name = Repositories;
 			path = Repos;
 			sourceTree = "<group>";
 		};
@@ -300,6 +310,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B43B1E761E01DE2E0044E6A7 /* Launch Screen.storyboard in Resources */,
 				B422AC011DFC45F400925E6A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,6 +371,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4E24B3C1DFDC46500A46E99 /* UserDetailsView.swift in Sources */,
+				B43B1E7C1E021B290044E6A7 /* UIImageView+loadImageFromURL.swift in Sources */,
 				B4E24B321DFDAF5F00A46E99 /* SearchDataSource.swift in Sources */,
 				B4E24B3E1DFDC47A00A46E99 /* RepositoryDetailsViewController.swift in Sources */,
 				B4E24B401DFDC48F00A46E99 /* RepositoryDetailsView.swift in Sources */,
@@ -370,6 +382,7 @@
 				B422ABDF1DFC441F00925E6A /* AppDelegate.swift in Sources */,
 				B4E24B451DFDCC0100A46E99 /* UserCell.swift in Sources */,
 				B48927621DFC6FD200DB940F /* UISearchBar+Appearance.swift in Sources */,
+				B43B1E781E0219160044E6A7 /* UIImageView+Circular.swift in Sources */,
 				B4E24B471DFDCD4A00A46E99 /* RepoCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

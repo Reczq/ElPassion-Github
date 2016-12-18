@@ -78,7 +78,12 @@ class SearchDataSource: NSObject, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: SearchIdentifiers.userCell, for: indexPath) as! UserCell
 
             if let user = items.users[indexPath.row] as? UserModel {
-                cell.textLabel?.text = user.name
+                cell.name.text = user.name
+                cell.avatar.loadImageFromURL(user.avatarURL) { (image: UIImage) -> Void in
+                    cell.avatar.image = image
+                    cell.avatar.makeCircular()
+                }
+                cell.stats.text = user.stars.components(separatedBy: ".")[0]
             }
 
             return cell
@@ -86,7 +91,13 @@ class SearchDataSource: NSObject, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: SearchIdentifiers.repoCell, for: indexPath) as! RepoCell
 
             if let repo = items.repositories[indexPath.row] as? RespositoryModel {
-                cell.textLabel?.text = repo.name
+                cell.name.text = repo.name
+                cell.avatar.loadImageFromURL(repo.ownerAvatarURL) { (image: UIImage) -> Void in
+                    cell.avatar.image = image
+                    cell.avatar.makeCircular()
+                }
+                cell.watchersCounter.text = repo.watchersCounter
+                cell.forksCounter.text = repo.forksCounter
             }
 
             return cell
@@ -139,15 +150,18 @@ class SearchDelegate: NSObject, UITableViewDelegate {
                                  width: tableView.frame.width,
                                  height: SearchSizes.headerLabelHeight)
         let label = UILabel(frame: headerFrame)
-        label.textColor = #colorLiteral(red: 0, green: 0.8358530402, blue: 0.3524739146, alpha: 1)
 
         guard let section = SearchSections(rawValue: section) else { return UIView() }
 
         switch section {
         case .users:
-            label.text = "  Users"
+            label.text = "Users"
+            label.textAlignment = .center
+            label.textColor = #colorLiteral(red: 0.1418412328, green: 0.9105157852, blue: 1, alpha: 1)
         case .repositories:
-            label.text = "  Repositories"
+            label.text = "Repositories"
+            label.textAlignment = .center
+            label.textColor = #colorLiteral(red: 0, green: 0.8358530402, blue: 0.3524739146, alpha: 1)
         }
 
         return label

@@ -18,16 +18,21 @@ class SearchView: UIView {
 
         super.init(frame: frame)
 
-        backgroundColor = #colorLiteral(red: 0.1879811585, green: 0.1879865527, blue: 0.1879836619, alpha: 1)
-
-        resultTableView.backgroundColor = UIColor.clear
-        addSubview(resultTableView)
-
+        self.setupTableview()
         updateConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    func setupTableview() {
+        backgroundColor = #colorLiteral(red: 0.1879811585, green: 0.1879865527, blue: 0.1879836619, alpha: 1)
+        resultTableView.backgroundColor = UIColor.clear
+        resultTableView.separatorStyle = .none
+        resultTableView.rowHeight = 90.0
+
+        addSubview(resultTableView)
     }
 
     override func updateConstraints() {
