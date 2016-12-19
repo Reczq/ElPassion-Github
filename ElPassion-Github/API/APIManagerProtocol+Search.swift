@@ -11,7 +11,6 @@ extension APIManagerProtocol {
             if let responseData =  response.result.value {
                 let jsonData = JSON(data: responseData)
                 let result = self.parser.parse(data: jsonData)
-                print(jsonData)
                 completion(result)
             }
         }

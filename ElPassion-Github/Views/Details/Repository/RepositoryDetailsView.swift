@@ -14,7 +14,7 @@
     static let bottomRepositoryDescription: CGFloat = -10
 
     static let betweenDetailsOffset: CGFloat = 10
-    static let topDetailsOffset: CGFloat = 20
+    static let topDetailsOffset: CGFloat = 15
     static let leftDetailsOffset: CGFloat = 20
     static let rightDetailsOffset: CGFloat = -20
     static let bottomDetailsOffset: CGFloat = -25
@@ -66,9 +66,10 @@
         let repositoryDescription = UILabel()
         repositoryDescription.font = UIFont(name: "Roboto-Regular", size: 13)
         repositoryDescription.numberOfLines = 0
+        repositoryDescription.textAlignment = .center
         repositoryDescription.lineBreakMode = .byWordWrapping
         repositoryDescription.textColor = #colorLiteral(red: 0.1353544295, green: 0.7183163762, blue: 0.2491897941, alpha: 1)
-        repositoryDescription.textAlignment = .center
+
         return repositoryDescription
     }()
 
@@ -95,9 +96,10 @@
 
     let langauge: UILabel = {
         let langauge = UILabel()
-        langauge.font = UIFont(name: "Roboto-Regular", size: 15)
+        langauge.font = UIFont(name: "Roboto-Regular", size: 14)
         langauge.numberOfLines = 0
-        langauge.lineBreakMode = .byClipping
+        langauge.lineBreakMode = .byTruncatingTail
+        langauge.textAlignment = .center
         langauge.textColor = #colorLiteral(red: 0.1353544295, green: 0.7183163762, blue: 0.2491897941, alpha: 1)
         return langauge
     }()
@@ -230,7 +232,6 @@
 
         stats.snp.updateConstraints { (maker) in
             maker.top.equalTo(starImage.snp.bottom).offset(RepositoryDetailsItemsOffsets.topDetailsOffset)
-            maker.bottom.equalTo(detailsBackground).offset(RepositoryDetailsItemsOffsets.bottomDetailsOffset)
             maker.centerX.equalTo(starImage)
         }
 
@@ -241,10 +242,9 @@
         }
 
         langauge.snp.updateConstraints { (maker) in
-            maker.bottom.equalTo(detailsBackground).offset(RepositoryDetailsItemsOffsets.bottomDetailsOffset)
-            maker.top.equalTo(languageImage.snp.bottom).offset(RepositoryDetailsItemsOffsets.topDetailsOffset)
+            maker.centerY.equalTo(stats)
             maker.centerX.equalTo(languageImage)
-            maker.size.width.equalTo(42)
+            maker.size.width.equalTo(40)
         }
 
         watchersImage.snp.updateConstraints { (maker) in
@@ -256,7 +256,6 @@
         watchersCounter.snp.updateConstraints { (maker) in
             maker.centerX.equalTo(watchersImage)
             maker.top.equalTo(watchersImage.snp.bottom).offset(RepositoryDetailsItemsOffsets.topDetailsOffset)
-            maker.bottom.equalTo(detailsBackground).offset(RepositoryDetailsItemsOffsets.bottomDetailsOffset)
         }
 
         forksImage.snp.updateConstraints { (maker) in
@@ -268,7 +267,6 @@
         forksCounter.snp.updateConstraints { (maker) in
             maker.centerX.equalTo(forksImage)
             maker.top.equalTo(forksImage.snp.bottom).offset(RepositoryDetailsItemsOffsets.topDetailsOffset)
-            maker.bottom.equalTo(detailsBackground).offset(RepositoryDetailsItemsOffsets.bottomDetailsOffset)
         }
     }
  }
