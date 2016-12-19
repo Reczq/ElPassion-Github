@@ -1,11 +1,3 @@
-//
-//  UserCell.swift
-//  ElPassion-Github
-//
-//  Created by Dominik Reczek on 11/12/16.
-//  Copyright © 2016 Dominik Reczek. All rights reserved.
-//
-
 import UIKit
 
 struct RepoCellOffsets {
@@ -25,16 +17,18 @@ struct RepoMainViewOffsets {
 
 class RepoCell: UITableViewCell {
 
-    var mainView: UIView = {
+    let mainView: UIView = {
         let mainView = UIView()
-        mainView.layer.borderWidth = 0.5
-        mainView.layer.borderColor = UIColor.black.cgColor
+        mainView.layer.masksToBounds = false
+        mainView.layer.shadowColor = UIColor.black.cgColor
+        mainView.layer.shadowOffset = CGSize(width: 0.0, height: 1.5)
+        mainView.layer.shadowOpacity = 0.2
         mainView.layer.cornerRadius = 20.0
         mainView.backgroundColor = #colorLiteral(red: 0.2696356177, green: 0.2742565274, blue: 0.2743487656, alpha: 1)
         return mainView
     }()
 
-    var name: UILabel = {
+    let name: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.lineBreakMode = .byTruncatingTail
@@ -42,21 +36,23 @@ class RepoCell: UITableViewCell {
         return label
     }()
 
-    var avatar: UIImageView = {
+    let avatar: UIImageView = {
         let imageView = UIImageView()
         return imageView
     }()
 
-    var watchersCounter: UILabel = {
+    let watchersCounter: UILabel = {
         let watchersCounter = UILabel()
+        watchersCounter.font = UIFont(name: "Roboto-Regular", size: 17)
         watchersCounter.numberOfLines = 0
         watchersCounter.lineBreakMode = .byClipping
         watchersCounter.textColor = #colorLiteral(red: 0.1353544295, green: 0.7183163762, blue: 0.2491897941, alpha: 1)
         return watchersCounter
     }()
 
-    var forksCounter: UILabel = {
+    let forksCounter: UILabel = {
         let forksCounter = UILabel()
+        forksCounter.font = UIFont(name: "Roboto-Regular", size: 17)
         forksCounter.numberOfLines = 0
         forksCounter.lineBreakMode = .byClipping
         forksCounter.textColor = #colorLiteral(red: 0.1353544295, green: 0.7183163762, blue: 0.2491897941, alpha: 1)
@@ -100,6 +96,7 @@ class RepoCell: UITableViewCell {
     }
 
     override func updateConstraints() {
+        super.updateConstraints()
 
         mainView.snp.updateConstraints { (maker) in
             maker.top.equalTo(self).offset(RepoMainViewOffsets.topOffset)
@@ -140,7 +137,5 @@ class RepoCell: UITableViewCell {
             maker.right.equalTo(mainView).offset(-(RepoCellOffsets.rightOffset))
             maker.size.equalTo(CGSize(width: 30, height: 30))
         }
-        
-        super.updateConstraints()
     }
 }

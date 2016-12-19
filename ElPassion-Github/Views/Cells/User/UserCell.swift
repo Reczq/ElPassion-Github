@@ -1,11 +1,3 @@
-//
-//  UserCell.swift
-//  ElPassion-Github
-//
-//  Created by Dominik Reczek on 11/12/16.
-//  Copyright © 2016 Dominik Reczek. All rights reserved.
-//
-
 import UIKit
 
 struct UserCellOffsets {
@@ -23,16 +15,28 @@ struct UserMainViewOffsets {
 
 class UserCell: UITableViewCell {
 
-    var mainView: UIView = {
+    let mainView: UIView = {
         let mainView = UIView()
-        mainView.layer.borderWidth = 0.5
-        mainView.layer.borderColor = UIColor.black.cgColor
+
+        mainView.layer.masksToBounds = false
+        mainView.layer.shadowColor = UIColor.black.cgColor
+        mainView.layer.shadowOffset = CGSize(width: 0.0, height: 1.5)
+        mainView.layer.shadowOpacity = 0.2
         mainView.layer.cornerRadius = 20.0
         mainView.backgroundColor = #colorLiteral(red: 0.2696356177, green: 0.2742565274, blue: 0.2743487656, alpha: 1)
         return mainView
     }()
 
-    var avatar: UIImageView = {
+    let name: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Roboto-Regular", size: 17)
+        label.numberOfLines = 0
+        label.lineBreakMode = .byTruncatingTail
+        label.textColor = #colorLiteral(red: 0.3563290536, green: 0.7290251851, blue: 0.7285040617, alpha: 1)
+        return label
+    }()
+
+    let avatar: UIImageView = {
         let imageView = UIImageView()
         return imageView
     }()
@@ -43,16 +47,9 @@ class UserCell: UITableViewCell {
         return starImage
     }()
 
-    var name: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.lineBreakMode = .byTruncatingTail
-        label.textColor = #colorLiteral(red: 0.3563290536, green: 0.7290251851, blue: 0.7285040617, alpha: 1)
-        return label
-    }()
-
-    var stats: UILabel = {
+    let stats: UILabel = {
         let stats = UILabel()
+        stats.font = UIFont(name: "Roboto-Regular", size: 17)
         stats.numberOfLines = 0
         stats.lineBreakMode = .byClipping
         stats.textColor = #colorLiteral(red: 0.3563290536, green: 0.7290251851, blue: 0.7285040617, alpha: 1)
@@ -81,6 +78,7 @@ class UserCell: UITableViewCell {
     }
 
     override func updateConstraints() {
+        super.updateConstraints()
 
         mainView.snp.updateConstraints { (maker) in
             maker.top.equalTo(self).offset(UserMainViewOffsets.topOffset)
@@ -111,7 +109,5 @@ class UserCell: UITableViewCell {
             maker.centerY.equalTo(mainView)
             maker.size.equalTo(CGSize(width: 25, height: 25))
         }
-
-        super.updateConstraints()
     }
 }
