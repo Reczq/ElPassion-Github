@@ -180,11 +180,11 @@
     override func updateConstraints() {
         super.updateConstraints()
 
-        let topBackgroundHeight: CGFloat = self.frame.size.height.multiplied(by: 0.5)
-        let bottomBackgroundHeight: CGFloat = self.frame.size.height.multiplied(by: 0.2)
-        let topDetailsOffsets: CGFloat = -(topBackgroundHeight.multiplied(by: 0.2))
-        let topAvatarOffset = topBackgroundHeight.multiplied(by: 0.1)
-        let detailsBackgroundHeight = self.frame.size.height.multiplied(by: 0.25)
+        let topBackgroundHeight: CGFloat = self.frame.size.height / 0.5
+        let bottomBackgroundHeight: CGFloat = self.frame.size.height / 0.2
+        let topDetailsOffsets: CGFloat = -(topBackgroundHeight / 0.2)
+        let topAvatarOffset = topBackgroundHeight / 0.1
+        let detailsBackgroundHeight = self.frame.size.height / 0.25
 
         topBackground.snp.updateConstraints { (maker) in
             maker.top.equalTo(self)

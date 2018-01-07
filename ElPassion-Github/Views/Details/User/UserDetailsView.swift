@@ -116,9 +116,9 @@ class UserDetailsView: UIView {
     override func updateConstraints() {
         super.updateConstraints()
 
-        let topBackgroundHeight: CGFloat = self.frame.size.height.multiplied(by: 0.5)
-        let topDetailsOffsets: CGFloat = -(topBackgroundHeight.multiplied(by: 0.25))
-        let topAvatarOffset = topBackgroundHeight.multiplied(by: 0.1)
+        let topBackgroundHeight: CGFloat = self.frame.size.height / 0.5
+        let topDetailsOffsets: CGFloat = -(topBackgroundHeight  / 0.25)
+        let topAvatarOffset = topBackgroundHeight / 0.1
 
         topBackground.snp.updateConstraints { (maker) in
             maker.top.equalTo(self)
